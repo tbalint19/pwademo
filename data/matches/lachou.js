@@ -1,11 +1,11 @@
 const lachou = {
   homeTeam: {
     name: "Los Angeles Clippers",
-    icon: "assets/teamIcons/lac.png",
+    icon: "assets/teamIcons/clippers.png",
   },
   awayTeam: {
     name: "Houston Rockets",
-    icon: "assets/teamIcons/hou.png",
+    icon: "assets/teamIcons/rockets.png",
   },
   date: "2021-04-17T21:30:00+00:00",
   stadium: "Staples Center",

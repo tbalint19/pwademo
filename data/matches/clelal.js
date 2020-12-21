@@ -1,11 +1,11 @@
 const clelal = {
   homeTeam: {
     name: "Cleveland Cavaliers",
-    icon: "assets/teamIcons/cle.png",
+    icon: "assets/teamIcons/cavaliers.png",
   },
   awayTeam: {
-    name: "Los Angeles Lakes",
-    icon: "assets/teamIcons/lal.png",
+    name: "Los Angeles Lakers",
+    icon: "assets/teamIcons/lakers.png",
   },
   date: "2021-04-17T21:30:00+00:00",
   stadium: "Rocket Mortgage FieldHouse",

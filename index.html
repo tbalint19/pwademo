@@ -17,7 +17,9 @@
       <main>
           <div v-if="!selectedMatch">
             <p v-for="match of matches" @click="selectMatch(match)">
+              <img :src="match.homeTeam.icon" alt="">
               {{ match.homeTeam.name }} - {{ match.awayTeam.name }}
+              <img :src="match.awayTeam.icon" alt="">
             </p>
           </div>
           <div v-else>
