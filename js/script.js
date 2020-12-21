@@ -3,9 +3,15 @@ var app = new Vue({
   data: {
     matches: deepCopy(matches),
     selectedMatch: null,
-    eventIndex: 0
+    eventIndex: 0,
+    msg: "swipe it",
+    counter: 0
   },
   methods: {
+    swipeHandler: function() {
+      this.counter = this.counter + 1
+      this.msg = "swiped" + this.counter
+    },
     selectMatch: function(match) {
       if (!match)
         return this.selectedMatch = null
@@ -38,7 +44,7 @@ var app = new Vue({
       return this.selectedMatch.events[i].oddses.out !== null
     },
     allHasOddses: function() {
-      
+
     },
     selectOut: function(out) {
       this.selectedEvent["oddses"]["out"] = out
@@ -53,7 +59,7 @@ var app = new Vue({
       this.selectedMatch.events[this.eventIndex].oddses["1"] = nextState.oddses["1"]
       this.selectedMatch.events[this.eventIndex].oddses["X"] = nextState.oddses["X"]
       this.selectedMatch.events[this.eventIndex].oddses["2"] = nextState.oddses["2"]
-    }
+    },
   },
   computed: {
     selectedEvent: function() {
