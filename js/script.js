@@ -33,6 +33,13 @@ var app = new Vue({
     isSelected: function(i) {
       return i == this.eventIndex
     },
+    hasOddses: function(i) {
+      if (!this.selectedMatch.events[i].oddses) return false
+      return this.selectedMatch.events[i].oddses.out !== null
+    },
+    allHasOddses: function() {
+      
+    },
     selectOut: function(out) {
       this.selectedEvent["oddses"]["out"] = out
       this.selectedEvent["oddses"]["1"] = 0

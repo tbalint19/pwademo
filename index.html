@@ -26,6 +26,10 @@
             <p>{{ selectedMatch.date }}</p>
             <p>{{ selectedMatch.stadium }}</p>
             <p>{{ selectedMatch.info }}</p>
+            <span v-for="(event, i) of selectedMatch.events">
+              <span v-if="hasOddses(i)">o</span>
+              <span v-if="!hasOddses(i)">x</span>
+            </span>
             <div v-for="(event, i) of selectedMatch.events">
               <div v-if="isSelected(i)">
                 <p>{{ event.name }}</p>
