@@ -7,7 +7,7 @@ const porsan = {
     name: "San Antonio Spurs",
     icon: "assets/teamIcons/spurs.png",
   },
-  date: "2021-04-9T21:30:00+00:00",
+  date: "2021-04-19T21:30:00+00:00",
   stadium: "Moda Center",
   info: "Regular season  - gameday 34",
   events: [

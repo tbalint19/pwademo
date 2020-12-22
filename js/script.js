@@ -1,7 +1,10 @@
 var app = new Vue({
   el: '#app',
   data: {
-    matches: deepCopy(matches),
+    allMatches: [],
+    matches: [],
+    dates: [],
+    dayIndex: 0,
     selectedMatch: null,
     eventIndex: 0,
     msg: "swipe it",
@@ -11,6 +14,22 @@ var app = new Vue({
     swipeHandler: function(dir, e) {
       this.counter = this.counter + 1
       this.msg = "swiped" + this.counter
+    },
+    selectDay: function() {
+      const date = this.dates[this.dayIndex]
+      this.matches = matches.filter(m => m.date.split("T")[0] === date)
+    },
+    toPreviousDay: function() {
+      if (this.dayIndex > 0) {
+        this.dayIndex--
+        this.selectDay()
+      }
+    },
+    toNextDay: function() {
+      if (this.dayIndex+1 < this.dates.length) {
+        this.dayIndex++
+        this.selectDay()
+      }
     },
     selectMatch: function(match) {
       if (!match)
@@ -64,6 +83,19 @@ var app = new Vue({
   computed: {
     selectedEvent: function() {
       return this.selectedMatch.events[this.eventIndex]
+    },
+    selectedDay: function() {
+      return this.dates[this.dayIndex]
     }
+  },
+  created() {
+    this.allMatches = deepCopy(matches)
+    this.dates = Array.from(
+      new Set(
+        this.allMatches.map(m => m.date.split("T")[0])
+      )
+    ).sort()
+    this.dayIndex = 0
+    this.selectDay()
   }
 })

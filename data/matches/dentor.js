@@ -7,7 +7,7 @@ const dentor = {
     name: "Toronto Raptors",
     icon: "assets/teamIcons/raptors.png",
   },
-  date: "2021-04-18T21:30:00+00:00",
+  date: "2021-04-19T21:30:00+00:00",
   stadium: "Ball Arena",
   info: "Regular season  - gameday 34",
   events: [

@@ -13,9 +13,9 @@
       <nav>
         SherwoodBET
       </nav>
-      <div id="swipeit" v-touch:swipe.left="swipeHandler">{{ msg }}</div>
       <main>
-        <section v-if="!selectedMatch">
+        <section class="match-list" v-if="!selectedMatch" v-touch:swipe.left="toNextDay" v-touch:swipe.right="toPreviousDay">
+          <p>{{ selectedDay }}</p>
           <div v-for="match of matches" @click="selectMatch(match)" class="match-select">
             <p>{{ match.homeTeam.name }} - {{ match.awayTeam.name }}</p>
             <div class="match-list-item">
