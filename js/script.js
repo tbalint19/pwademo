@@ -8,7 +8,8 @@ var app = new Vue({
     selectedMatch: null,
     eventIndex: 0,
     msg: "swipe it",
-    counter: 0
+    counter: 0,
+    slideswap: 'slideswapleft'
   },
   methods: {
     swipeHandler: function(dir, e) {
@@ -20,12 +21,14 @@ var app = new Vue({
       this.matches = matches.filter(m => m.date.split("T")[0] === date)
     },
     toPreviousDay: function() {
+      this.slideswap = 'slideswapright'
       if (this.dayIndex > 0) {
         this.dayIndex--
         this.selectDay()
       }
     },
     toNextDay: function() {
+      this.slideswap = 'slideswapleft'
       if (this.dayIndex+1 < this.dates.length) {
         this.dayIndex++
         this.selectDay()

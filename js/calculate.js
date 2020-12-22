@@ -186,11 +186,11 @@ const calculate = (event, out, value) => {
             event.oddses['1']++
           }
         }
-        else if (event.oddses['1'] > event.oddses['2']) {
+        else if (event.oddses['1'] > event.oddses['X']) {
           event.oddses['2']--
           event.oddses['X']++
         }
-        else if (event.oddses['1'] < event.oddses['2']) {
+        else if (event.oddses['1'] < event.oddses['X']) {
           event.oddses['2']--
           event.oddses['1']++
         }

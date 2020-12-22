@@ -1,18 +1,18 @@
 .match-list {
-  min-height: 100vh;
+  min-height: 70vh;
 }
 
 .match-select {
   box-sizing: border-box;
   padding: 10px;
   margin-bottom: 10px;
-  box-shadow: 0 0 3px silver;
+  box-shadow: 0 0 3px #66BB6A;
 }
 
 .match-select > p {
   position: relative;
   margin: auto;
-  font-size: 0.8em;
+  font-size: 0.7em;
   margin-bottom: 2px;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .match-list-item p {
-  font-size: 0.6em;
+  font-size: 0.55em;
   margin: 0;
   padding: 0;
   text-align: center;
@@ -49,4 +49,32 @@
 
 .match-list-item img {
   width: 100%;
+}
+
+.slideswapleft-enter-active, .slideswapleft-leave-active {
+  transition: .4s ease;
+}
+
+.slideswapleft-enter {
+  opacity: 0;
+  transform: translateX(300px);
+}
+
+.slideswapleft-leave-to {
+  opacity: 0;
+  transform: translateX(-300px);
+}
+
+.slideswapright-enter-active, .slideswapright-leave-active {
+  transition: .4s ease;
+}
+
+.slideswapright-enter {
+  opacity: 0;
+  transform: translateX(-300px);
+}
+
+.slideswapright-leave-to {
+  opacity: 0;
+  transform: translateX(300px);
 }

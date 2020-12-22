@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <title>SherwoodBET</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/list.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="js/lib/touch.js"></script>
@@ -15,7 +19,13 @@
       </nav>
       <main>
         <section class="match-list" v-if="!selectedMatch" v-touch:swipe.left="toNextDay" v-touch:swipe.right="toPreviousDay">
-          <p>{{ selectedDay }}</p>
+          <div id="nba-logo-container">
+            <img src="/assets/nbalogo.png">
+          </div>
+          <transition :name="slideswap" mode="out-in">
+          <div :key="dayIndex">
+          <p id="date">{{ selectedDay }}</p>
+          <hr>
           <div v-for="match of matches" @click="selectMatch(match)" class="match-select">
             <p>{{ match.homeTeam.name }} - {{ match.awayTeam.name }}</p>
             <div class="match-list-item">
@@ -28,6 +38,8 @@
               <img :src="match.awayTeam.icon" alt="">
             </div>
           </div>
+          </div>
+          </transition>
         </section>
           <div v-else>
             <p @click="selectMatch(null)">Back</p>
