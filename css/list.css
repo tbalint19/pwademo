@@ -1,0 +1,47 @@
+.match-select {
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 3px silver;
+}
+
+.match-select > p {
+  position: relative;
+  margin: auto;
+  font-size: 0.8em;
+}
+
+.match-list-item {
+  position: relative;
+  width: 95%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 55px auto 55px;
+  grid-template-rows: auto;
+}
+
+.match-list-item div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.match-list-item div :first-child {
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.match-list-item div :first-child~p {
+  opacity: 0.6;
+}
+
+.match-list-item p {
+  font-size: 0.6em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.match-list-item img {
+  width: 100%;
+}

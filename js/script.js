@@ -8,7 +8,7 @@ var app = new Vue({
     counter: 0
   },
   methods: {
-    swipeHandler: function() {
+    swipeHandler: function(dir, e) {
       this.counter = this.counter + 1
       this.msg = "swiped" + this.counter
     },

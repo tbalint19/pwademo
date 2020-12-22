@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>SherwoodBET</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/list.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="js/lib/touch.js"></script>
   </head>
@@ -15,13 +15,20 @@
       </nav>
       <div id="swipeit" v-touch:swipe.left="swipeHandler">{{ msg }}</div>
       <main>
-          <div v-if="!selectedMatch">
-            <p v-for="match of matches" @click="selectMatch(match)">
-              <img :src="match.homeTeam.icon" alt="">
-              {{ match.homeTeam.name }} - {{ match.awayTeam.name }}
+        <section v-if="!selectedMatch">
+          <div v-for="match of matches" @click="selectMatch(match)" class="match-select">
+            <p>{{ match.homeTeam.name }} - {{ match.awayTeam.name }}</p>
+            <div class="match-list-item">
+              <img :src="match.homeTeam.icon">
+              <div>
+                <p>{{ match.date }}</p>
+                <p>{{ match.info }}</p>
+                <p>{{ match.stadium }}</p>
+              </div>
               <img :src="match.awayTeam.icon" alt="">
-            </p>
+            </div>
           </div>
+        </section>
           <div v-else>
             <p @click="selectMatch(null)">Back</p>
             <p>
@@ -66,6 +73,9 @@
     </div>
     <script src="data/matches/clelal.js"></script>
     <script src="data/matches/lachou.js"></script>
+    <script src="data/matches/atldal.js"></script>
+    <script src="data/matches/memmil.js"></script>
+    <script src="data/matches/bosphi.js"></script>
     <script src="data/matches/all.js"></script>
     <script src="js/deepCopy.js"></script>
     <script src="js/calculate.js"></script>
