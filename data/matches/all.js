@@ -3,5 +3,11 @@ const matches = [
   lachou,
   atldal,
   memmil,
-  bosphi
+  bosphi,
+  okcpor,
+
+  dentor,
+  clebro,
+
+  porsan,
 ]

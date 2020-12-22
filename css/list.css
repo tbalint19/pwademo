@@ -9,6 +9,7 @@
   position: relative;
   margin: auto;
   font-size: 0.8em;
+  margin-bottom: 2px;
 }
 
 .match-list-item {
