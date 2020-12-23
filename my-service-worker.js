@@ -4,8 +4,8 @@ self.addEventListener('install', function(event) {
       console.log("cache", cache);
       return cache.addAll(
         [
-          '/js/calculate.js',
-          '/index.html'
+          '/pwademo/js/calculate.js',
+          '/pwademo/index.html'
         ]
       );
     })
@@ -14,7 +14,8 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('fetch', function(event) {
   event.respondWith(
-    fetch(event.request).catch(function() {
+    fetch(event.request).catch(function(e) {
+      console.log("error", e);
       console.log("event", event);
       return caches.match(event.request);
     })
