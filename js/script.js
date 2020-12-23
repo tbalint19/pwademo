@@ -9,12 +9,61 @@ var app = new Vue({
     eventIndex: 0,
     msg: "swipe it",
     counter: 0,
-    slideswap: 'slideswapleft'
+    slideswap: 'slideswapleft',
+    eventSwap: 'slideswapleft',
+    intervals: {
+      home: null,
+      draw: null,
+      away: null
+    }
   },
   methods: {
-    swipeHandler: function(dir, e) {
-      this.counter = this.counter + 1
-      this.msg = "swiped" + this.counter
+    clearIntervals: function() {
+      if (this.intervals.home) {
+        clearInterval(this.intervals.home)
+        this.intervals.home = null
+      }
+      if (this.intervals.draw) {
+        clearInterval(this.intervals.draw)
+        this.intervals.draw = null
+      }
+      if (this.intervals.away) {
+        clearInterval(this.intervals.away)
+        this.intervals.away = null
+      }
+    },
+    hasIntervals: function() {
+      return !!(this.intervals.home || this.intervals.draw || this.intervals.away)
+    },
+    homeup: function() {
+      this.clearIntervals()
+      const self = this
+      this.intervals.home = setInterval(() => self.calculateNext('1', 1, false), 30)
+    },
+    homebottom: function() {
+      this.clearIntervals()
+      const self = this
+      this.intervals.home = setInterval(() => self.calculateNext('1', -1, false), 30)
+    },
+    drawup: function() {
+      this.clearIntervals()
+      const self = this
+      this.intervals.home = setInterval(() => self.calculateNext('X', 1, false), 30)
+    },
+    drawbottom: function() {
+      this.clearIntervals()
+      const self = this
+      this.intervals.home = setInterval(() => self.calculateNext('X', -1, false), 30)
+    },
+    awayup: function() {
+      this.clearIntervals()
+      const self = this
+      this.intervals.home = setInterval(() => self.calculateNext('2', 1, false), 30)
+    },
+    awaybottom: function() {
+      this.clearIntervals()
+      const self = this
+      this.intervals.home = setInterval(() => self.calculateNext('2', -1, false), 30)
     },
     selectDay: function() {
       const date = this.dates[this.dayIndex]
@@ -49,12 +98,14 @@ var app = new Vue({
     toPreviousEvent: function() {
       if (!this.selectMatch)
         return
+      this.eventSwap = 'slideswapright'
       if (this.eventIndex > 0)
         this.eventIndex--
     },
     toNextEvent: function() {
       if (!this.selectMatch)
         return
+      this.eventSwap = 'slideswapleft'
       if (this.eventIndex < this.selectedMatch.events.length-1)
         this.eventIndex++
     },
@@ -69,13 +120,15 @@ var app = new Vue({
 
     },
     selectOut: function(out) {
+      if (this.hasIntervals()) return this.clearIntervals()
       this.selectedEvent["oddses"]["out"] = out
       this.selectedEvent["oddses"]["1"] = 0
       this.selectedEvent["oddses"]["X"] = 0
       this.selectedEvent["oddses"]["2"] = 0
       this.selectedEvent["oddses"][out] = 100
     },
-    calculateNext: function(out, value) {
+    calculateNext: function(out, value, clear=true) {
+      if (clear) this.clearIntervals()
       const currentState = deepCopy(this.selectedEvent)
       const nextState = deepCopy(calculate(currentState, out, value))
       this.selectedMatch.events[this.eventIndex].oddses["1"] = nextState.oddses["1"]

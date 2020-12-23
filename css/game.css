@@ -1,0 +1,101 @@
+#status-bar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.green-status {
+  opacity: 1;
+  border: 3px solid #66BB6A;
+  border-radius: 100%;
+}
+
+.red-status {
+  opacity: 0.2;
+  border: 3px solid #66BB6A;
+  border-radius: 33%;
+}
+
+.event-title {
+  text-align: center;
+}
+
+.calculator {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.calculator div {
+  height: 35vh;
+  box-sizing: border-box;
+  border: 2px solid #66BB6A;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0.7;
+}
+
+.calculator div div {
+  height: 30%;
+  border: 0;
+  background-color: transparent;
+  color: green;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.calculator div div p {
+  margin: 0;
+  padding: 0;
+}
+
+.home-bar {
+  position: relative;
+}
+
+.home-bar::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: var(--homebarh);
+  bottom: 0;
+  left: 0;
+  background-color: #66BB6A;
+}
+
+.draw-bar {
+  position: relative;
+}
+
+.draw-bar::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: var(--drawbarh);
+  bottom: 0;
+  left: 0;
+  background-color: #66BB6A;
+}
+
+.away-bar {
+  position: relative;
+}
+
+.away-bar::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: var(--awaybarh);
+  bottom: 0;
+  left: 0;
+  background-color: #66BB6A;
+}

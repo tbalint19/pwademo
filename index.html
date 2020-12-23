@@ -3,12 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>SherwoodBET</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/list.css">
+    <link rel="stylesheet" href="css/game.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="js/lib/touch.js"></script>
   </head>
@@ -41,44 +42,62 @@
           </div>
           </transition>
         </section>
-          <div v-else>
-            <p @click="selectMatch(null)">Back</p>
-            <p>
-              {{ selectedMatch.homeTeam.name }} - {{ selectedMatch.awayTeam.name }}
-            </p>
-            <p>{{ selectedMatch.date }}</p>
-            <p>{{ selectedMatch.stadium }}</p>
-            <p>{{ selectedMatch.info }}</p>
-            <span v-for="(event, i) of selectedMatch.events">
-              <span v-if="hasOddses(i)">o</span>
-              <span v-if="!hasOddses(i)">x</span>
-            </span>
+        <section v-else>
+          <p @click="selectMatch(null)">&lt;&nbsp;Back</p>
+          <div class="match-select">
+            <p>{{ selectedMatch.homeTeam.name }} - {{ selectedMatch.awayTeam.name }}</p>
+            <div class="match-list-item">
+              <img :src="selectedMatch.homeTeam.icon">
+              <div>
+                <p>{{ selectedMatch.date }}</p>
+                <p>{{ selectedMatch.info }}</p>
+                <p>{{ selectedMatch.stadium }}</p>
+              </div>
+              <img :src="selectedMatch.awayTeam.icon" alt="">
+            </div>
+          </div>
+          <div id="status-bar">
             <div v-for="(event, i) of selectedMatch.events">
-              <div v-if="isSelected(i)">
-                <p>{{ event.name }}</p>
-                <div>
-                  <button @click="selectOut('1')">{{ event.options['1'] }}</button>
-                  <span>{{ event.oddses['1'] }}</span>
-                  <button @click="calculateNext('1', 1)">+</button>
-                  <button @click="calculateNext('1', -1)">-</button>
+              <div v-if="hasOddses(i)" class="green-status"></div>
+              <div v-if="!hasOddses(i)" class="red-status"></div>
+            </div>
+          </div>
+          <transition-group :name="eventSwap" mode="out-in">
+          <div v-for="(event, i) of selectedMatch.events" :key="i">
+            <div v-touch:swipe.left="toNextEvent" v-touch:swipe.right="toPreviousEvent">
+            <div v-if="isSelected(i)" :key="i">
+              <p class="event-title">{{ event.name }}</p>
+              <div class="calculator">
+                <div class="home-bar" :style="{ '--homebarh': `${event.oddses['1']}%` }" v-touch:swipe.top="homeup" v-touch:swipe.bottom="homebottom">
+                  <div @click="calculateNext('1', 1)">+</div>
+                  <div @click="selectOut('1')">
+                    <p>{{ event.options['1'] }}</p>
+                    <p>{{ event.oddses['1'] }}%</p>
+                  </div>
+                  <div @click="calculateNext('1', -1)">-</div>
                 </div>
-                <div>
-                  <button @click="selectOut('X')">{{ event.options['X'] }}</button>
-                  <span>{{ event.oddses['X'] }}</span>
-                  <button @click="calculateNext('X', 1)">+</button>
-                  <button @click="calculateNext('X', -1)">-</button>
+                <div class="draw-bar" :style="{ '--drawbarh': `${event.oddses['X']}%` }" v-touch:swipe.top="drawup" v-touch:swipe.bottom="drawbottom">
+                  <div @click="calculateNext('X', 1)">+</div>
+                  <div @click="selectOut('X')">
+                    <p>{{ event.options['X'] }}</p>
+                    <p>{{ event.oddses['X'] }}%</p>
+                  </div>
+                  <div @click="calculateNext('X', -1)">-</div>
                 </div>
-                <div>
-                  <button @click="selectOut('2')">{{ event.options['2'] }}</button>
-                  <span>{{ event.oddses['2'] }}</span>
-                  <button @click="calculateNext('2', 1)">+</button>
-                  <button @click="calculateNext('2', -1)">-</button>
+                <div class="away-bar" :style="{ '--awaybarh': `${event.oddses['2']}%` }" v-touch:swipe.top="awayup" v-touch:swipe.bottom="awaybottom">
+                  <div @click="calculateNext('2', 1)">+</div>
+                  <div @click="selectOut('2')">
+                    <p>{{ event.options['2'] }}</p>
+                    <p>{{ event.oddses['2'] }}%</p>
+                  </div>
+                  <div @click="calculateNext('2', -1)">-</div>
                 </div>
-                <button @click="toPreviousEvent()">Previous</button>
-                <button @click="toNextEvent()">Next</button>
               </div>
             </div>
           </div>
+          </div>
+        </transition-group>
+        </section>
       </main>
       <footer>
       </footer>
