@@ -3,12 +3,12 @@
   "name": "SherwoodBET App - nextgen betting",
   "icons": [
     {
-      "src": "/pwademo/assets/icons.png",
+      "src": "assets/icons.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/pwademo/assets/iconl.png",
+      "src": "assets/iconl.png",
       "type": "image/png",
       "sizes": "512x512"
     }
