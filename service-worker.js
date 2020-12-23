@@ -1,3 +1,7 @@
 self.addEventListener('install', function(event) {
-    console.log("runs!!!!");
+    console.log("installed!!!!");
+});
+
+self.addEventListener('activate', function(event) {
+  console.log("runs!!!!");
 });
