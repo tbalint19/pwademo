@@ -16,7 +16,7 @@
   "start_url": "/pwademo",
   "background_color": "blue",
   "display": "fullscreen",
-  "scope": "/pwademo",
+  "scope": "/",
   "theme_color": "red",
   "shortcuts": [ ]
 }
