@@ -7,7 +7,7 @@ self.addEventListener('install', function(event) {
           '/pwademo/js/calculate.js',
           '/pwademo/index.html'
         ]
-      ).then(r => console.log("r", cache)).catch(e => console.log("e", e));
+      ).then(r => caches.open('my-static-cache').then((c)=console.log(c))).catch(e => console.log("e", e));
     })
   );
 });
