@@ -13,10 +13,9 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/pwademo",
+  "start_url": "/",
   "background_color": "blue",
   "display": "fullscreen",
-  "scope": "/",
   "theme_color": "red",
-  "shortcuts": [ ]
+  "prefer_related_applications": false
 }
