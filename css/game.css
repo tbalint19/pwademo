@@ -16,6 +16,10 @@
   border-radius: 33%;
 }
 
+.selected-status {
+  box-shadow: 0 0 5px 5px green;
+}
+
 .event-title {
   text-align: center;
 }

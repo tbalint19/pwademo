@@ -58,45 +58,42 @@
           </div>
           <div id="status-bar">
             <div v-for="(event, i) of selectedMatch.events">
-              <div v-if="hasOddses(i)" class="green-status"></div>
-              <div v-if="!hasOddses(i)" class="red-status"></div>
+              <div
+                :class="{'green-status': hasOddses(i), 'red-status': !hasOddses(i), 'selected-status': isSelected(i)}">
+              </div>
             </div>
           </div>
-          <transition-group :name="eventSwap" mode="out-in">
-          <div v-for="(event, i) of selectedMatch.events" :key="i">
-            <div v-touch:swipe.left="toNextEvent" v-touch:swipe.right="toPreviousEvent">
-            <div v-if="isSelected(i)" :key="i">
-              <p class="event-title">{{ event.name }}</p>
+          <transition :name="eventSwap" mode="out-in">
+            <div v-touch:swipe.left="toNextEvent" v-touch:swipe.right="toPreviousEvent" :key="selectedEvent.name">
+              <p class="event-title">{{ selectedEvent.name }}</p>
               <div class="calculator">
-                <div class="home-bar" :style="{ '--homebarh': `${event.oddses['1']}%` }" v-touch:swipe.top="homeup" v-touch:swipe.bottom="homebottom">
+                <div class="home-bar" :style="{ '--homebarh': `${selectedEvent.oddses['1']}%` }" v-touch:swipe.top="homeup" v-touch:swipe.bottom="homebottom">
                   <div @click="calculateNext('1', 1)">+</div>
                   <div @click="selectOut('1')">
-                    <p>{{ event.options['1'] }}</p>
-                    <p>{{ event.oddses['1'] }}%</p>
+                    <p>{{ selectedEvent.options['1'] }}</p>
+                    <p>{{ selectedEvent.oddses['1'] }}%</p>
                   </div>
                   <div @click="calculateNext('1', -1)">-</div>
                 </div>
-                <div class="draw-bar" :style="{ '--drawbarh': `${event.oddses['X']}%` }" v-touch:swipe.top="drawup" v-touch:swipe.bottom="drawbottom">
+                <div class="draw-bar" :style="{ '--drawbarh': `${selectedEvent.oddses['X']}%` }" v-touch:swipe.top="drawup" v-touch:swipe.bottom="drawbottom">
                   <div @click="calculateNext('X', 1)">+</div>
                   <div @click="selectOut('X')">
-                    <p>{{ event.options['X'] }}</p>
-                    <p>{{ event.oddses['X'] }}%</p>
+                    <p>{{ selectedEvent.options['X'] }}</p>
+                    <p>{{ selectedEvent.oddses['X'] }}%</p>
                   </div>
                   <div @click="calculateNext('X', -1)">-</div>
                 </div>
-                <div class="away-bar" :style="{ '--awaybarh': `${event.oddses['2']}%` }" v-touch:swipe.top="awayup" v-touch:swipe.bottom="awaybottom">
+                <div class="away-bar" :style="{ '--awaybarh': `${selectedEvent.oddses['2']}%` }" v-touch:swipe.top="awayup" v-touch:swipe.bottom="awaybottom">
                   <div @click="calculateNext('2', 1)">+</div>
                   <div @click="selectOut('2')">
-                    <p>{{ event.options['2'] }}</p>
-                    <p>{{ event.oddses['2'] }}%</p>
+                    <p>{{ selectedEvent.options['2'] }}</p>
+                    <p>{{ selectedEvent.oddses['2'] }}%</p>
                   </div>
                   <div @click="calculateNext('2', -1)">-</div>
                 </div>
               </div>
-            </div>
           </div>
-          </div>
-        </transition-group>
+        </transition>
         </section>
       </main>
       <footer>
