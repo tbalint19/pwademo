@@ -7,7 +7,7 @@ self.addEventListener('install', function(event) {
           '/js/calculate.js',
           '/index.html'
         ]
-      ).then(r => caches.open('my-static-cache').then((c)=>console.log(c)));
+      ).then(r => caches.open('my-static-cache').then((c)=>console.log(c))).catch(e => console.log(e));
     })
   );
 });
