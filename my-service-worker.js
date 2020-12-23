@@ -1,7 +1,7 @@
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('my-static-cache').then(function(cache) {
-      console.log("cache",, cache);
+      console.log("cache", cache);
       return cache.addAll(
         [
           '/js/calculate.js',
