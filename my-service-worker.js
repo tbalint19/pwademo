@@ -15,3 +15,5 @@ self.addEventListener('fetch', e => {
     })
   )
 })
+
+console.log("mar az uj");
