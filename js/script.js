@@ -15,7 +15,8 @@ var app = new Vue({
       home: null,
       draw: null,
       away: null
-    }
+    },
+    debounced: false
   },
   methods: {
     clearIntervals: function() {
@@ -70,6 +71,8 @@ var app = new Vue({
       this.matches = matches.filter(m => m.date.split("T")[0] === date)
     },
     toPreviousDay: function() {
+      if (this.debounced) {return}
+      this.debounce()
       this.slideswap = 'slideswapright'
       if (this.dayIndex > 0) {
         this.dayIndex--
@@ -77,11 +80,18 @@ var app = new Vue({
       }
     },
     toNextDay: function() {
+      if (this.debounced) {return}
+      this.debounce()
       this.slideswap = 'slideswapleft'
       if (this.dayIndex+1 < this.dates.length) {
         this.dayIndex++
         this.selectDay()
       }
+    },
+    debounce: function() {
+      this.debounced = true
+      const self = this
+      setTimeout(() => self.debounced = false, 400)
     },
     selectMatch: function(match) {
       if (!match)
@@ -96,6 +106,8 @@ var app = new Vue({
       this.selectedMatch = deepCopy(editedMatch)
     },
     toPreviousEvent: function() {
+      if (this.debounced) {return}
+      this.debounce()
       if (!this.selectMatch)
         return
       this.eventSwap = 'slideswapright'
@@ -103,6 +115,8 @@ var app = new Vue({
         this.eventIndex--
     },
     toNextEvent: function() {
+      if (this.debounced) {return}
+      this.debounce()
       if (!this.selectMatch)
         return
       this.eventSwap = 'slideswapleft'

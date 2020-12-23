@@ -52,7 +52,7 @@
 }
 
 .slideswapleft-enter-active, .slideswapleft-leave-active {
-  transition: .4s ease;
+  transition: .15s ease;
 }
 
 .slideswapleft-enter {
@@ -66,7 +66,7 @@
 }
 
 .slideswapright-enter-active, .slideswapright-leave-active {
-  transition: .4s ease;
+  transition: .15s ease;
 }
 
 .slideswapright-enter {
