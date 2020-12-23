@@ -15,7 +15,7 @@
   ],
   "start_url": ".",
   "background_color": "blue",
-  "display": "fullscreen",
+  "display": "standalone",
   "theme_color": "red",
   "prefer_related_applications": false
 }
