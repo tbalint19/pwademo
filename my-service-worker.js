@@ -7,7 +7,7 @@ self.addEventListener('install', function(event) {
           '/pwademo/js/calculate.js',
           '/pwademo/index.html'
         ]
-      );
+      ).then(r => console.log("r", r)).catch(e => console.log("e", e));
     })
   );
 });
