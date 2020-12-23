@@ -16,7 +16,6 @@ var app = new Vue({
       draw: null,
       away: null
     },
-    debounced: false
   },
   methods: {
     clearIntervals: function() {
@@ -71,27 +70,18 @@ var app = new Vue({
       this.matches = matches.filter(m => m.date.split("T")[0] === date)
     },
     toPreviousDay: function() {
-      if (this.debounced) {return}
-      this.debounce()
-      this.slideswap = 'slideswapright'
       if (this.dayIndex > 0) {
+        this.slideswap = 'slideswapright'
         this.dayIndex--
         this.selectDay()
       }
     },
     toNextDay: function() {
-      if (this.debounced) {return}
-      this.debounce()
-      this.slideswap = 'slideswapleft'
       if (this.dayIndex+1 < this.dates.length) {
+        this.slideswap = 'slideswapleft'
         this.dayIndex++
         this.selectDay()
       }
-    },
-    debounce: function() {
-      this.debounced = true
-      const self = this
-      setTimeout(() => self.debounced = false, 400)
     },
     selectMatch: function(match) {
       if (!match)
@@ -106,22 +96,20 @@ var app = new Vue({
       this.selectedMatch = deepCopy(editedMatch)
     },
     toPreviousEvent: function() {
-      if (this.debounced) {return}
-      this.debounce()
       if (!this.selectMatch)
         return
-      this.eventSwap = 'slideswapright'
-      if (this.eventIndex > 0)
+      if (this.eventIndex > 0) {
+        this.eventSwap = 'slideswapright'
         this.eventIndex--
+      }
     },
     toNextEvent: function() {
-      if (this.debounced) {return}
-      this.debounce()
       if (!this.selectMatch)
         return
-      this.eventSwap = 'slideswapleft'
-      if (this.eventIndex < this.selectedMatch.events.length-1)
+      if (this.eventIndex < this.selectedMatch.events.length-1) {
+        this.eventSwap = 'slideswapleft'
         this.eventIndex++
+      }
     },
     isSelected: function(i) {
       return i == this.eventIndex

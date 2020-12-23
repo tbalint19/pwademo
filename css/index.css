@@ -42,13 +42,13 @@ main {
   text-align: center;
   margin-bottom: 0;
   padding-bottom: 0;
-  color: #66BB6A;
+  color: #42A5F5;
 }
 
 hr {
   margin: 0;
   padding: 0;
   margin-bottom: 8px;
-  border: 1px solid #66BB6A;
+  border: 1px solid #42A5F5;
   border-radius: 10px;
 }
