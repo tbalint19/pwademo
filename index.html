@@ -21,7 +21,7 @@
       <main>
         <section class="match-list" v-if="!selectedMatch" v-touch:swipe.left="toNextDay" v-touch:swipe.right="toPreviousDay">
           <div id="nba-logo-container">
-            <img src="/assets/nbalogo.png">
+            <img src="/pwademo/assets/nbalogo.png">
           </div>
           <transition :name="slideswap" mode="out-in">
           <div :key="dayIndex">
