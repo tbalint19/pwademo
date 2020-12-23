@@ -4,8 +4,8 @@ self.addEventListener('install', function(event) {
       console.log("cache", cache);
       return cache.addAll(
         [
-          '/pwademo/js/calculate.js',
-          '/pwademo/index.html'
+          '/js/calculate.js',
+          '/index.html'
         ]
       ).then(r => caches.open('my-static-cache').then((c)=>console.log(c)));
     })
